@@ -443,12 +443,14 @@ class Project(object):
         plans = {}
 
         for service in services:
-            updated_dependencies = [
-                name
-                for name in service.get_dependency_names()
-                if name in plans and
-                plans[name].action in ('recreate', 'create')
-            ]
+            # no need to recreate service if its depend service is receated.
+            updated_dependencies = []
+            # updated_dependencies = [
+            #     name
+            #     for name in service.get_dependency_names()
+            #     if name in plans and
+            #     plans[name].action in ('recreate', 'create')
+            # ]
 
             if updated_dependencies and strategy.allows_recreate:
                 log.debug('%s has upstream changes (%s)',
