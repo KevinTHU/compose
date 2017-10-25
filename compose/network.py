@@ -2,6 +2,7 @@ from __future__ import absolute_import
 from __future__ import unicode_literals
 
 import logging
+from collections import OrderedDict
 
 from docker.errors import NotFound
 from docker.types import IPAMConfig
@@ -262,7 +263,7 @@ def get_network_defs_for_service(service_dict):
     if 'network_mode' in service_dict:
         return {}
     networks = service_dict.get('networks', {'default': None})
-    return dict(
+    return OrderedDict(
         (net, (config or {}))
         for net, config in networks.items()
     )
