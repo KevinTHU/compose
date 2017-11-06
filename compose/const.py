@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 import sys
 
 DEFAULT_TIMEOUT = 10
-HTTP_TIMEOUT = 60
+HTTP_TIMEOUT = 120
 IMAGE_EVENTS = ['delete', 'import', 'load', 'pull', 'push', 'save', 'tag', 'untag']
 IS_WINDOWS_PLATFORM = (sys.platform == "win32")
 LABEL_CONTAINER_NUMBER = 'com.docker.compose.container-number'
