@@ -425,7 +425,7 @@ class Project(object):
         )
         if errors:
             raise ProjectError(
-                'Encountered errors while bringing up the project.'
+                'Encountered errors while bringing up the project.', errors
             )
 
         return [
@@ -638,5 +638,13 @@ class NoSuchService(Exception):
 
 
 class ProjectError(Exception):
-    def __init__(self, msg):
+    def __init__(self, msg, errors=None):
         self.msg = msg
+        self.errors = errors
+        if self.errors:
+            self.message = "{0}\n {1}".format(self.msg, '\n'.join(['{0}: {1}'.format(service, error) for service, error in self.errors.items()]))
+        else:
+            self.message = self.msg
+
+    def __str__(self):
+        return self.message
