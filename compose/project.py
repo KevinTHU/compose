@@ -376,7 +376,7 @@ class Project(object):
 
     def up(self,
            service_names=None,
-           start_deps=True,
+           start_deps=False,
            strategy=ConvergenceStrategy.changed,
            do_build=BuildAction.none,
            timeout=None,
